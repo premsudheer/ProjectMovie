@@ -1,0 +1,118 @@
+﻿@model global::Movies.Models.Movie
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/PageStyle.css" rel="stylesheet" />
+<script src="~/js/Style.js"></script>
+<h1>CREATE FILMS</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4 center">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Storyline" class="control-label"></label>
+                <input asp-for="Storyline" class="form-control" />
+                <span asp-validation-for="Storyline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReleaseDate" class="control-label"></label>
+                <input asp-for="ReleaseDate" class="form-control" />
+                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Runtime" class="control-label"></label>
+                <input asp-for="Runtime" class="form-control" />
+                <span asp-validation-for="Runtime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MovieType" class="control-label"></label>
+                <select asp-for="MovieType" class="form-control" asp-items="Html.GetEnumSelectList<MovieType>()"></select>
+                <span asp-validation-for="MovieType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Movie Genre</label>
+                <div class="col-md-10">
+                    <div class="checkbox">
+
+                     
+                        @foreach (var item in (MultiSelectList)ViewBag.GenreId)
+                        {
+                            <input type="checkbox" value="@item.Value" id="GenreId" name="GenreId" />@item.Text
+                        }
+
+                    </div>
+                </div>
+                @*<select asp-for="MovieGenre" class="form-control" asp-items=""></select>
+        <span asp-validation-for="GenreId" class="text-danger"></span>*@
+            </div>
+
+            @*--------------------------------Test Code Below------------------------------------*@
+
+
+
+
+
+            @*<div class="form-group">
+        <label class="control-label">Movie Genre</label>
+        <table>
+            <tbody>
+            @{ int i = 0;}
+            <tr>*@
+
+
+        @*@foreach (var Genre in @Model.MovieGenre)
+        {
+        <li><input type="checkbox" name="MovieGenre.GenreId" value="@Model.MovieGenre.Genre" /> </li>
+
+        }*@
+            @*@foreach (var Genres in @Model.MovieGenre)
+        {
+            <td>
+                <input type="hidden" name="MovieGenre[@i].GenreId" asp-for="@Model.MovieGenre.GenreId" class="form-control" />
+                <input type="text" name="MovieGenre[@i].Genre.Name" asp-for="@Model.MovieGenre.Genre.Name" class="form-control" />
+            </td>
+            i++;
+        }*@
+            @*</tr>
+                </tbody>
+            </table>
+        </div>*@
+
+
+            @*---------------------------------------------------- Test Code Above-------------------------------------------------------------------*@
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a class="btn btn-primary" asp-action="Index">Back to List</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

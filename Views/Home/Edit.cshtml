@@ -1,0 +1,48 @@
+﻿@model global::Movies.Models.Genre
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/PageStyle.css" rel="stylesheet" />
+<h1>EDIT</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4 center">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="GenreId" />
+
+
+
+            @*<div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <select asp-for="Name" class="form-control" asp-items="Html.GetEnumSelectList<Genres>()"></select>
+            <span asp-validation-for="Name" class="text-danger"></span>
+
+
+        </div>*@
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a class="btn btn-primary" asp-action="Index">Back to List</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.GenreId">Delete</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

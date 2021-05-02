@@ -1,0 +1,102 @@
+﻿@model IEnumerable<Movies.Models.Movie>
+@{
+    ViewData["Title"] = "Movies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>MOVIES</h1>
+<p>
+    <a class="btn btn-info" asp-action="Create">Create New</a>
+</p>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Storyline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Runtime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieType)
+
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.MovieGenre.)*@
+                Genre Name
+            </th>
+
+      
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Storyline)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Runtime)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.MovieType)
+
+            </td>
+
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Genres)*@
+
+           @*@foreach (var Genre in item.MovieGenres)
+        {
+            @Genre.GenreId <br />
+        }*@   
+
+                @*@foreach(var Genre in(MultiSelectList)ViewBag.GenreId)
+                {
+                    @Genre.Selected;
+                }<br />*@
+
+            </td>
+
+
+            <td>
+                <ul><a class="btn btn-info" asp-action="Edit" asp-route-id="@item.MovieId">Edit</a></ul>
+                <ul><a class="btn btn-info" asp-action="Delete" asp-route-id="@item.MovieId">Delete</a></ul>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

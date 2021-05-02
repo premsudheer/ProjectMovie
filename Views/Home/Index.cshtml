@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Genre>
+@{
+    ViewData["Title"] = "GENRE";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GENRE</h1>
+<p>
+    <a class="btn btn-info" asp-action="Create">Create New</a>
+</p>
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GenreId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+   
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+              
+
+                <td>
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.GenreId">Edit</a>
+                    <a class="btn btn-info" asp-action="Delete" asp-route-id="@item.GenreId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

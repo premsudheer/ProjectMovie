@@ -1,0 +1,11 @@
+﻿h1{
+    text-align:center;
+}
+.center {
+    margin: auto;
+    width: 50%;
+}
+
+input.valid {
+    border: 1px solid Green;
+}
