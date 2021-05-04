@@ -63,7 +63,7 @@ namespace Movies.Controllers
         public IActionResult Create()
         {         
             //used to get a table as check box from another table which have a foreign key
-            ViewBag.GenreId = new MultiSelectList(_context.Genre.ToList(), "GenreId", "Name");//the soure of dropdownlist
+            ViewBag.GenreId = new MultiSelectList(_context.Genres.ToList(), "GenreId", "Name");//the soure of dropdownlist
             return View();
         }
 
@@ -83,7 +83,7 @@ namespace Movies.Controllers
                 return RedirectToAction(nameof(Index));
             }
       
-            ViewBag.GenreId = new MultiSelectList(_context.Genre.ToList(), "GenreId", "Name"); //For Genre as a Checkbox list
+            ViewBag.GenreId = new MultiSelectList(_context.Genres.ToList(), "GenreId", "Name"); //For Genre as a Checkbox list
             return View(movies);
             
         }
@@ -162,7 +162,7 @@ namespace Movies.Controllers
                         throw;
                     }
                 }
-                ViewBag.GenreId = new SelectList(_context.Genre, "GenreId", "Name");//the soure of dropdownlist
+                ViewBag.GenreId = new SelectList(_context.Genres, "GenreId", "Name");//the soure of dropdownlist
 
                 return RedirectToAction(nameof(Index));
             }

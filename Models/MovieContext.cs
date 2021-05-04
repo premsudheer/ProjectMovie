@@ -17,7 +17,7 @@ namespace Movies.Models
         }
 
         public virtual DbSet<Movie> Movies { get; set; }
-        public virtual DbSet<Genre> Genre { get; set; }
+        public virtual DbSet<Genre> Genres { get; set; }
         //public virtual DbSet<MovieGenre> MovieGenre { get; set; }
 
 
@@ -57,6 +57,23 @@ namespace Movies.Models
                        .WithMany(p => p.Movies)
                        .UsingEntity(j => j.ToTable("MovieGenre"));
 
+
+            modelBuilder.Entity<Movie>()
+            .HasMany(m => m.Genres)
+            .WithMany(g => g.Movies)
+            .UsingEntity<MovieGenre>(
+                j => j
+                    .HasOne(mg => mg.Genre)
+                    .WithMany(g => g.MovieGenres)
+                    .HasForeignKey(mg => mg.GenreId),
+                j => j
+                    .HasOne(mg => mg.Movie)
+                    .WithMany(g => g.MovieGenres)
+                    .HasForeignKey(mg => mg.MovieId),
+                j =>
+                {
+                    j.HasKey(t => new { t.MovieGenreId });
+                });
 
             //modelBuilder
             //       .Entity<Movie>()

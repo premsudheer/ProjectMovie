@@ -19,7 +19,7 @@ namespace Movies.Models
 
 
         public ICollection<Movie> Movies { get; set; }
-       //public List<MovieGenre> MovieGenres { get; set; }
+        public List<MovieGenre> MovieGenres { get; set; }
 
 
 

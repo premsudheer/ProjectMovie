@@ -28,7 +28,7 @@ namespace Movies.Models
 
        
         public ICollection<Genre> Genres { get; set; }
-        //public List<MovieGenre> MovieGenres { get; set; }
+        public List<MovieGenre> MovieGenres { get; set; }
 
 
 
