@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Movies.Models
 {
+    [Table("Genre")]
     public class Genre
     {
         [Key]

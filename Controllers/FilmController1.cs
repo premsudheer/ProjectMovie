@@ -72,19 +72,28 @@ namespace Movies.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Description,Storyline,Year,ReleaseDate,Runtime,MovieType")] Movie movies)
+        public async Task<IActionResult> Create([Bind("Title,Description,Storyline,Year,ReleaseDate,Runtime,MovieType,GenreId")] Movie movie)
         {
            
 
             if (ModelState.IsValid)
             {
-                _context.Add(movies);
+                var body = Request.Form["GenreId"];
+                foreach(var g in body.ToList())
+                {
+                    var gen = _context.Genres.First(x => x.GenreId == int.Parse(g));
+                    movie.Genres.Add(gen);
+                }
+
+                _context.Movies.Add(movie);
+               
                 await _context.SaveChangesAsync();
+                
                 return RedirectToAction(nameof(Index));
             }
       
             ViewBag.GenreId = new MultiSelectList(_context.Genres.ToList(), "GenreId", "Name"); //For Genre as a Checkbox list
-            return View(movies);
+            return View(movie);
             
         }
 

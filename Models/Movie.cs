@@ -11,6 +11,10 @@ namespace Movies.Models
 
     public partial class Movie
     {
+        public Movie()
+        {
+            this.Genres = new List<Genre>();
+        }
         public int MovieId { get; set; }
         [Required]
         public string Title { get; set; }
